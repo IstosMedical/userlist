@@ -1,75 +1,43 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: #f9f9f9;
-  color: #333;
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("customer-list");
+  const searchInput = document.getElementById("searchInput");
 
-header {
-  background: #004080;
-  color: white;
-  text-align: center;
-  padding: 2rem;
-}
+  let customersData = [];
 
-.hero {
-  text-align: center;
-  padding: 2rem;
-  background: #e6f2ff;
-}
+  // Load JSON data
+  fetch("customers.json")
+    .then(response => response.json())
+    .then(customers => {
+      customersData = customers;
+      displayCustomers(customersData);
+    })
+    .catch(err => console.error("Error loading customers:", err));
 
-#search {
-  text-align: center;
-  margin: 1rem;
-}
+  // Display customers
+  function displayCustomers(customers) {
+    container.innerHTML = "";
+    customers.forEach(c => {
+      const card = document.createElement("div");
+      card.className = "customer-card";
+      card.innerHTML = `
+        <img src="assets/placeholder.png" alt="Equipment Image">
+        <h3>${c.name}</h3>
+        <p><strong>Location:</strong> ${c.location}</p>
+        <p><strong>Setup:</strong> ${c.setup}</p>
+        <p><strong>Equipments:</strong> ${c.equipments}</p>
+      `;
+      container.appendChild(card);
+    });
+  }
 
-#searchInput {
-  width: 60%;
-  padding: 0.8rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-#customers {
-  padding: 2rem;
-}
-
-.customer-card {
-  background: white;
-  border-radius: 8px;
-  padding: 1rem;
-  margin: 1rem 0;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.customer-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 6px;
-}
-
-#gallery {
-  padding: 2rem;
-  background: #fff;
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
-}
-
-.gallery-grid img {
-  width: 100%;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-footer {
-  background: #004080;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-}
+  // Filter search
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase();
+    const filtered = customersData.filter(c =>
+      c.name.toLowerCase().includes(query) ||
+      c.location.toLowerCase().includes(query) ||
+      c.equipments.toLowerCase().includes(query)
+    );
+    displayCustomers(filtered);
+  });
+});
