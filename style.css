@@ -1021,3 +1021,10 @@ select:focus {
   font-weight: 800;
   letter-spacing: 0.06em;
 }
+
+.brand-logo {
+  height: 60px;       /* adjust size */
+  width: auto;
+  margin-bottom: 10px;
+}
+    
