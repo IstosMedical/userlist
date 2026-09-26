@@ -1,0 +1,20 @@
+[
+  {
+    "name": "SRL Diagnostics, Goregaon",
+    "location": "Mumbai",
+    "setup": "Complete Lab Setup",
+    "equipments": "Tissue Processor, Embedding Center, Microtome, Cooling Plate, Cassette Printer"
+  },
+  {
+    "name": "S L Raheja Hospital – Fortis Associate",
+    "location": "Mumbai",
+    "setup": "Hospital Lab",
+    "equipments": "Enclosed Tissue Processor, Semi Auto Microtome, Bone Cutter, Slide Dryer"
+  },
+  {
+    "name": "Bhakti Vedanta Hospital, Mira Road",
+    "location": "Mumbai",
+    "setup": "Complete Lab Setup",
+    "equipments": "Grossing Station, Tissue Processor, Embedding Center, Cryostat"
+  }
+]
