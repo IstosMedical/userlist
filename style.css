@@ -985,3 +985,39 @@ select:focus {
 
   .gallery-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    .gallery-card-no-image {
+  display: flex;
+  min-height: 300px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(233, 120, 36, 0.23),
+      transparent 30%
+    ),
+    linear-gradient(145deg, #174d78 0%, #0a2c4c 100%);
+}
+
+.gallery-card-no-image::after {
+  background: linear-gradient(
+    to top,
+    rgba(4, 25, 44, 0.95),
+    rgba(4, 25, 44, 0.04) 68%
+  );
+}
+
+.gallery-icon {
+  display: grid;
+  width: 92px;
+  height: 92px;
+  place-items: center;
+  border: 2px solid rgba(255, 255, 255, 0.78);
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
