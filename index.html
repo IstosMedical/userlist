@@ -30,14 +30,13 @@
 
         <span class="brand-text">
           <strong>ISTOS Medical</strong>
-          <small>Histopathology Solutions</small>
+          <small>WHERE TISSUE MEETS TECHNOLOGY</small>
         </span>
       </a>
 
       <nav class="header-nav" aria-label="Primary navigation">
         <a href="#customers">Customers</a>
         <a href="#equipment-gallery">Equipment Gallery</a>
-        <a class="header-cta" href="/contact-us">Contact Us</a>
       </nav>
     </div>
   </header>
@@ -62,17 +61,13 @@
             <a class="button button-primary" href="#customers">
               Explore Customers
             </a>
-
-            <a class="button button-secondary" href="/contact-us">
-              Discuss Your Requirement
-            </a>
           </div>
         </div>
 
         <aside class="hero-stat-card" aria-label="Customer showcase summary">
           <p class="stat-label">Serving healthcare across India</p>
 
-          <p class="stat-number" id="totalCustomersStat">170+</p>
+          <p class="stat-number" id="totalCustomersStat">250+</p>
 
           <p class="stat-text">
             Hospitals, laboratories, medical colleges and research institutions.
@@ -168,48 +163,6 @@
             </select>
           </label>
         </div>
-
-        <div
-          id="loadingState"
-          class="status-state"
-          role="status"
-          aria-live="polite"
-        >
-          <span class="loader" aria-hidden="true"></span>
-          <p>Loading customer showcase...</p>
-        </div>
-
-        <div
-          id="errorState"
-          class="status-state status-error"
-          role="alert"
-          hidden
-        >
-          <h3>Unable to load customer data</h3>
-          <p>
-            Please ensure that <code>customers.json</code> is present and valid JSON.
-          </p>
-        </div>
-
-        <div
-          id="emptyState"
-          class="status-state"
-          hidden
-        >
-          <h3>No customer records found</h3>
-          <p>Try changing your search keywords or clearing the active filters.</p>
-
-          <button type="button" id="emptyClearButton" class="button button-outline">
-            Clear Filters
-          </button>
-        </div>
-
-        <div
-          id="customer-results"
-          class="customer-grid"
-          aria-live="polite"
-          aria-busy="true"
-        ></div>
 
         <nav
           id="pagination"
