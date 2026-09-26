@@ -1170,7 +1170,7 @@
       }
     ]
   },
-  {
+   {
     "sr_no": 44,
     "customer": "Torrent Diagnostics, Sanpada",
     "contact_person": null,
@@ -1193,5 +1193,5 @@
         "quantity": 4
       }
     ]
-  },
-  {
+  }
+]
