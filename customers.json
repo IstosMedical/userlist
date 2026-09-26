@@ -1,20 +1,1197 @@
 [
   {
-    "name": "SRL Diagnostics, Goregaon",
+    "sr_no": 1,
+    "customer": "SRL Diagnostics, Goregaon",
+    "contact_person": null,
     "location": "Mumbai",
-    "setup": "Complete Lab Setup",
-    "equipments": "Tissue Processor, Embedding Center, Microtome, Cooling Plate, Cassette Printer"
+    "setup_type": "Complete Lab Setup",
+    "equipment": [
+      {
+        "name": "Fast Tissue Processor",
+        "model": "Intelsint EFTP",
+        "quantity": 1
+      },
+      {
+        "name": "Embedding Center",
+        "model": "ISTOS ES 1050-1,2",
+        "quantity": 1
+      },
+      {
+        "name": "Manual Microtome",
+        "model": "PFM 3004 M",
+        "quantity": 3
+      },
+      {
+        "name": "Cooling Plate",
+        "model": "ISTOS ES 1050-2",
+        "quantity": 3
+      },
+      {
+        "name": "Tissue Flotation Bath",
+        "model": "ISTOS TFB 1100",
+        "quantity": 3
+      },
+      {
+        "name": "Slide Dryer",
+        "model": "ISTOS SDT 1200",
+        "quantity": 3
+      },
+      {
+        "name": "Cassette Printer",
+        "model": "Vogel CP 6001",
+        "quantity": 1
+      },
+      {
+        "name": "Bone Cutter",
+        "model": "ISTOS BBS",
+        "quantity": 1
+      }
+    ]
   },
   {
-    "name": "S L Raheja Hospital – Fortis Associate",
+    "sr_no": 2,
+    "customer": "S L Raheja Hospital – A Fortis Associate, Mahim",
+    "contact_person": null,
     "location": "Mumbai",
-    "setup": "Hospital Lab",
-    "equipments": "Enclosed Tissue Processor, Semi Auto Microtome, Bone Cutter, Slide Dryer"
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Enclosed Tissue Processor",
+        "model": "Intelsint ETP",
+        "quantity": 1
+      },
+      {
+        "name": "Semi Auto Microtome",
+        "model": "PFM 3005 E",
+        "quantity": 2
+      },
+      {
+        "name": "Bone Cutter",
+        "model": "ISTOS BBS",
+        "quantity": 1
+      },
+      {
+        "name": "Tissue Flotation Bath",
+        "model": "ISTOS TFB 1100",
+        "quantity": 2
+      },
+      {
+        "name": "Slide Dryer",
+        "model": "ISTOS SDT 1200",
+        "quantity": 1
+      }
+    ]
   },
   {
-    "name": "Bhakti Vedanta Hospital, Mira Road",
+    "sr_no": 3,
+    "customer": "Bhakti Vedanta Hospital, Mira Road",
+    "contact_person": null,
     "location": "Mumbai",
-    "setup": "Complete Lab Setup",
-    "equipments": "Grossing Station, Tissue Processor, Embedding Center, Cryostat"
-  }
-]
+    "setup_type": "Complete Lab Setup",
+    "equipment": [
+      {
+        "name": "Grossing Station",
+        "model": "ISTOS Labgross",
+        "quantity": 1
+      },
+      {
+        "name": "Tissue Processor",
+        "model": "MYR STP 120",
+        "quantity": 1
+      },
+      {
+        "name": "Embedding Center",
+        "model": "ISTOS ES 1050-1,2",
+        "quantity": 1
+      },
+      {
+        "name": "Manual Microtome",
+        "model": "PFM 3004 M",
+        "quantity": 1
+      },
+      {
+        "name": "Tissue Flotation Bath",
+        "model": "ISTOS TFB 1300",
+        "quantity": 1
+      },
+      {
+        "name": "Cryostat",
+        "model": "ISTOS CM 550",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 4,
+    "customer": "KEM Medical College & Hospital, Parel",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Fully Auto Microtome",
+        "model": "PFM 3006 EM",
+        "quantity": 4
+      },
+      {
+        "name": "Semi Auto Microtome",
+        "model": "PFM 3005 E",
+        "quantity": 2
+      },
+      {
+        "name": "Slide Stainer",
+        "model": "Intelsint AUS 1",
+        "quantity": 2
+      },
+      {
+        "name": "Enclosed Tissue Processor",
+        "model": "Intelsint ETP",
+        "quantity": 2
+      }
+    ]
+  },
+  {
+    "sr_no": 5,
+    "customer": "Centre for Oncopathology (Tata Trust), Wadala",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Grossing Station",
+        "model": "ISTOS Labgross",
+        "quantity": 1
+      },
+      {
+        "name": "Bone Cutter",
+        "model": "ISTOS BBS",
+        "quantity": 1
+      },
+      {
+        "name": "Reagent Recycler",
+        "model": "BR Instruments",
+        "quantity": 1
+      },
+      {
+        "name": "Formaldehyde Meter",
+        "model": "PPM HTVM",
+        "quantity": 1
+      },
+      {
+        "name": "Xylene Monitoring Pump",
+        "model": "Drager",
+        "quantity": 1
+      },
+      {
+        "name": "Manual Cassette Printer",
+        "model": "Vogel VCP",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 6,
+    "customer": "Histopia Lab, Borivali",
+    "contact_person": "Dr. Nikita Oza",
+    "location": "Mumbai",
+    "setup_type": "Complete Lab Setup",
+    "equipment": [
+      {
+        "name": "Grossing Station",
+        "model": "ISTOS Labgross",
+        "quantity": 1
+      },
+      {
+        "name": "Bone Cutter",
+        "model": "ISTOS BBS",
+        "quantity": 1
+      },
+      {
+        "name": "Cassette Printer",
+        "model": "Vogel CP 6001",
+        "quantity": 1
+      },
+      {
+        "name": "Tissue Processor",
+        "model": "Lupetec PT05TS",
+        "quantity": 1
+      },
+      {
+        "name": "Embedding Station",
+        "model": "ISTOS ES 1050-1,2",
+        "quantity": 1
+      },
+      {
+        "name": "Manual Microtome",
+        "model": "PFM 3004 M",
+        "quantity": 1
+      },
+      {
+        "name": "Water Bath",
+        "model": "ISTOS TFB 1300",
+        "quantity": 1
+      },
+      {
+        "name": "Hot Plate",
+        "model": "ISTOS SDT 1200",
+        "quantity": 1
+      },
+      {
+        "name": "Slide Stainer",
+        "model": "Rushab HP 2430",
+        "quantity": 1
+      },
+      {
+        "name": "Cytocentrifuge",
+        "model": "Centurion Pro Cyt",
+        "quantity": 1
+      },
+      {
+        "name": "Portable Cryostat",
+        "model": "Bright Starlet",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 7,
+    "customer": "Speciality Oncopathology Centre, Ghatkopar",
+    "contact_person": "Dr. Kiran Thorat",
+    "location": "Mumbai",
+    "setup_type": "Complete Lab Setup",
+    "equipment": [
+      {
+        "name": "Grossing Station",
+        "model": "ISTOS Labgross",
+        "quantity": 1
+      },
+      {
+        "name": "Bone Cutter",
+        "model": "ISTOS BBS",
+        "quantity": 1
+      },
+      {
+        "name": "Tissue Processor",
+        "model": "MYR STP 120",
+        "quantity": 1
+      },
+      {
+        "name": "Embedding Station",
+        "model": "ISTOS ES 1050-1,2",
+        "quantity": 1
+      },
+      {
+        "name": "Manual Microtome",
+        "model": "PFM 3004 M",
+        "quantity": 1
+      },
+      {
+        "name": "Water Bath",
+        "model": "ISTOS TFB 1300",
+        "quantity": 1
+      },
+      {
+        "name": "Hot Plate",
+        "model": "ISTOS SDT 1200",
+        "quantity": 1
+      },
+      {
+        "name": "Manual Slide Stainer",
+        "model": "ISTOS SS112",
+        "quantity": 1
+      },
+      {
+        "name": "Portable Cryostat",
+        "model": "Bright Starlet",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 8,
+    "customer": "Neuberg Supratech Laboratory, Vidyavihar",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Bone Cutter",
+        "model": "ISTOS BBS",
+        "quantity": 1
+      },
+      {
+        "name": "Reagent Recycler",
+        "model": "BR Instruments",
+        "quantity": 1
+      },
+      {
+        "name": "Formaldehyde Meter",
+        "model": "PPM HTVM",
+        "quantity": 1
+      },
+      {
+        "name": "Xylene Monitoring Pump",
+        "model": "Drager",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 9,
+    "customer": "Kokilaben Dhirubhai Ambani Hospital, Andheri",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Enclosed Tissue Processor",
+        "model": "Intelsint ETP",
+        "quantity": 1
+      },
+      {
+        "name": "Semi Auto Microtome",
+        "model": "PFM 3005 E",
+        "quantity": 1
+      },
+      {
+        "name": "Manual Microtome",
+        "model": "PFM 3000 Compac",
+        "quantity": 1
+      },
+      {
+        "name": "Tissue Flotation Bath",
+        "model": "ISTOS TFB 1300",
+        "quantity": 1
+      },
+      {
+        "name": "Automated Slide Stainer with Attached Coverslipper",
+        "model": "Intelsint AVR",
+        "quantity": 1
+      },
+      {
+        "name": "Grossing Station with Camera",
+        "model": "Labgross 8ft + Propath",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 10,
+    "customer": "N M Medical, Borivali",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Grossing Station",
+        "model": "ISTOS Labgross",
+        "quantity": 1
+      },
+      {
+        "name": "Formaldehyde Meter",
+        "model": "PPM HTVM",
+        "quantity": 1
+      },
+      {
+        "name": "Bone Cutter",
+        "model": "ISTOS BBS",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 11,
+    "customer": "HCG Hospital, Borivali",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Enclosed Tissue Processor",
+        "model": "Intelsint TP 300",
+        "quantity": 1
+      },
+      {
+        "name": "Cryostat",
+        "model": "ISTOS CM 650+",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 12,
+    "customer": "Holy Spirit Hospital, Andheri",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Carousel Tissue Processor",
+        "model": "MYR STP 120",
+        "quantity": 1
+      },
+      {
+        "name": "Automated Slide Stainer",
+        "model": "Rushab HP 2430",
+        "quantity": 1
+      },
+      {
+        "name": "Bone Cutter",
+        "model": "ISTOS BBS",
+        "quantity": 1
+      },
+      {
+        "name": "Grossing Station",
+        "model": "ISTOS Labgross",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 13,
+    "customer": "B J Wadia Hospital for Children, Parel",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": "Complete Lab Setup",
+    "equipment": [
+      {
+        "name": "Fully Auto Microtome",
+        "model": "PFM 3006 EM",
+        "quantity": 1
+      },
+      {
+        "name": "Embedding Center",
+        "model": "ISTOS ES 1050-1,2",
+        "quantity": 1
+      },
+      {
+        "name": "Formaldehyde Meter",
+        "model": "PPM HTVM",
+        "quantity": 1
+      },
+      {
+        "name": "Enclosed Tissue Processor",
+        "model": "Intelsint TP 300",
+        "quantity": 1
+      },
+      {
+        "name": "Tissue Flotation Bath",
+        "model": "ISTOS TFB 1300",
+        "quantity": 1
+      },
+      {
+        "name": "Grossing Station",
+        "model": "ISTOS Labgross",
+        "quantity": 1
+      },
+      {
+        "name": "Bone Cutter",
+        "model": "ISTOS BBS",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 14,
+    "customer": "P D Hinduja Hospital, Mahim",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Bone Cutter",
+        "model": "ISTOS BBS",
+        "quantity": 1
+      },
+      {
+        "name": "Tissue Flotation Bath",
+        "model": "TFB 1100",
+        "quantity": 1
+      },
+      {
+        "name": "Manual Microtome",
+        "model": "PFM 3000 Compac",
+        "quantity": 1
+      },
+      {
+        "name": "Enclosed Tissue Processor",
+        "model": "Intelsint EFTP",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 15,
+    "customer": "Reliance HN Hospital, Charni Road",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Bone Cutter with Table",
+        "model": "ISTOS BBS",
+        "quantity": 1
+      },
+      {
+        "name": "Tissue Flotation Bath",
+        "model": "ISTOS TFB 1300",
+        "quantity": 1
+      },
+      {
+        "name": "Enclosed Fast Processor",
+        "model": "Intelsint EFTP",
+        "quantity": 1
+      },
+      {
+        "name": "Grossing Station with Camera",
+        "model": "ISTOS Labgross",
+        "quantity": 1
+      },
+      {
+        "name": "Fully Auto Microtome",
+        "model": "PFM 3006 EM",
+        "quantity": 2
+      }
+    ]
+  },
+  {
+    "sr_no": 16,
+    "customer": "Lilavati Hospital, Bandra",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Tissue Flotation Bath",
+        "model": "ISTOS TFB 1300",
+        "quantity": 2
+      },
+      {
+        "name": "Slide Dryer",
+        "model": "ISTOS SDT 1200",
+        "quantity": 2
+      },
+      {
+        "name": "Enclosed Tissue Processor",
+        "model": "Intelsint ETP",
+        "quantity": 1
+      },
+      {
+        "name": "Manual Microtome",
+        "model": "PFM 3000 Compac",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 17,
+    "customer": "Bhabha Hospital, Bandra",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Enclosed Tissue Processor",
+        "model": "Intelsint ETP",
+        "quantity": 1
+      },
+      {
+        "name": "Semi Auto Microtome",
+        "model": "PFM 3005 E",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 18,
+    "customer": "Metropolis Lab, Vidyavihar",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Grossing Station",
+        "model": "ISTOS Labgross",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 19,
+    "customer": "LTMG Sion Hospital, Sion",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Cryostat",
+        "model": "ISTOS 650+",
+        "quantity": 1
+      },
+      {
+        "name": "Enclosed Tissue Processor",
+        "model": "Intelsint ETP",
+        "quantity": 2
+      },
+      {
+        "name": "Grossing Station",
+        "model": "ISTOS Labgross",
+        "quantity": 1
+      },
+      {
+        "name": "Embedding Station",
+        "model": "Rushab HP150",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 20,
+    "customer": "Cooper Hospital, Vile Parle",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Bone Cutter",
+        "model": "ISTOS BBS",
+        "quantity": 1
+      },
+      {
+        "name": "Grossing Station",
+        "model": "ISTOS Labgross",
+        "quantity": 1
+      },
+      {
+        "name": "Enclosed Tissue Processor",
+        "model": "Intelsint ETP",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 21,
+    "customer": "T. N. Medical College & BYL Nair Ch. Hospital",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Enclosed Tissue Processor",
+        "model": "Intelsint ETP",
+        "quantity": 2
+      }
+    ]
+  },
+  {
+    "sr_no": 22,
+    "customer": "Nanavati Hospital, Vile Parle",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Bone Cutter",
+        "model": "ISTOS BBS",
+        "quantity": 1
+      },
+      {
+        "name": "Grossing Station",
+        "model": "ISTOS Labgross",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 23,
+    "customer": "Accura Diagnostics",
+    "contact_person": "Dr. Rahul Pandey",
+    "location": "Kandivali, Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Bone Cutter",
+        "model": "ISTOS BBS",
+        "quantity": 1
+      },
+      {
+        "name": "Grossing Station",
+        "model": "ISTOS Labgross",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 24,
+    "customer": "Parikshan Lab",
+    "contact_person": "Dr. Gauri Vidolkar",
+    "location": "Mulund, Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Bone Cutter",
+        "model": "ISTOS BBS",
+        "quantity": 1
+      },
+      {
+        "name": "Portable Cryostat",
+        "model": "Bright Starlet",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 25,
+    "customer": "Igenetic Diagnostics Pvt Ltd, Andheri",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Embedding Station",
+        "model": "ISTOS ES 1050-1,2",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 26,
+    "customer": "Dr. Sameer Pathan",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Portable Cryostat",
+        "model": "Bright Starlet",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 26,
+    "customer": "Dr. Asawari Ambekar",
+    "contact_person": null,
+    "location": "Thane",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Portable Cryostat",
+        "model": "Bright Starlet",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 27,
+    "customer": "Saifee Hospital, Charni Road",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Reagent Recycler",
+        "model": "BR Instruments",
+        "quantity": 1
+      },
+      {
+        "name": "Enclosed Tissue Processor",
+        "model": "Intelsint ETP",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 28,
+    "customer": "Cancare Head & Neck Cancer Hospital, Dockyard",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Bone Cutter",
+        "model": "ISTOS BBS",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 29,
+    "customer": "Dr. Babasaheb Ambedkar Memorial Central Railway Hospital, Byculla",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Enclosed Tissue Processor",
+        "model": "Intelsint TP300",
+        "quantity": 1
+      },
+      {
+        "name": "Fully Auto Microtome",
+        "model": "PFM 3006 EM",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 30,
+    "customer": "Dr. Sanjay Navani, Lab Surgpath",
+    "contact_person": null,
+    "location": "Tardeo, Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Portable Cryostat",
+        "model": "Bright Starlet",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 31,
+    "customer": "Dr. Swati Narurkar",
+    "contact_person": null,
+    "location": "Chembur, Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Portable Cryostat",
+        "model": "Bright Starlet",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 32,
+    "customer": "Namaha Hospital, Kandivali",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Portable Cryostat",
+        "model": "Bright Starlet",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 33,
+    "customer": "Suburban, Dr. Lal Path Labs, Vidyavihar",
+    "contact_person": null,
+    "location": "Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Enclosed Tissue Processor",
+        "model": "Intelsint ETP",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 34,
+    "customer": "Dr. Viraj Sadrani / Dr. Shruti Deshkulkarni",
+    "contact_person": null,
+    "location": "Borivali, Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Portable Cryostat",
+        "model": "Bright Starlet",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 35,
+    "customer": "NEW MGM Hospital, Vashi",
+    "contact_person": null,
+    "location": "Navi Mumbai",
+    "setup_type": "Complete Lab Setup",
+    "equipment": [
+      {
+        "name": "Grossing Station",
+        "model": "ISTOS Labgross",
+        "quantity": 1
+      },
+      {
+        "name": "Tissue Processor",
+        "model": "MYR STP 120",
+        "quantity": 1
+      },
+      {
+        "name": "Embedding Center",
+        "model": "MYR EC 350-1,2",
+        "quantity": 1
+      },
+      {
+        "name": "Manual Microtome",
+        "model": "PFM 3004 M",
+        "quantity": 1
+      },
+      {
+        "name": "Tissue Flotation Bath",
+        "model": "ISTOS TFB 1100",
+        "quantity": 1
+      },
+      {
+        "name": "Slide Drying Table",
+        "model": "ISTOS SDT 1200",
+        "quantity": 1
+      },
+      {
+        "name": "Slide Stainer",
+        "model": "MYR SS 30",
+        "quantity": 1
+      },
+      {
+        "name": "Cytocentrifuge",
+        "model": "Procyt LCD",
+        "quantity": 1
+      },
+      {
+        "name": "Formaldehyde Meter",
+        "model": "PPM HTVM",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 36,
+    "customer": "ACTREC, Kharghar, Research/Animal House",
+    "contact_person": null,
+    "location": "Navi Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Tissue Processor",
+        "model": "MYR STP 120",
+        "quantity": 1
+      },
+      {
+        "name": "Fully Auto Microtome",
+        "model": "PFM 3006 EM",
+        "quantity": 1
+      },
+      {
+        "name": "Embedding Center",
+        "model": "ISTOS ES 1050-1",
+        "quantity": 1
+      },
+      {
+        "name": "Tissue Flotation Bath",
+        "model": "ISTOS TFB 1100",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 37,
+    "customer": "Reliance Life Sciences, Rabale",
+    "contact_person": null,
+    "location": "Navi Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Grossing Station",
+        "model": "ISTOS Labgross",
+        "quantity": 1
+      },
+      {
+        "name": "Bone Cutter",
+        "model": "ISTOS BBS",
+        "quantity": 1
+      },
+      {
+        "name": "Enclosed Tissue Processor",
+        "model": "Intelsint ETP",
+        "quantity": 1
+      },
+      {
+        "name": "Embedding Station",
+        "model": "ISTOS ES 1050-1,2",
+        "quantity": 1
+      },
+      {
+        "name": "Cytocentrifuge",
+        "model": "Centurion Pro Cyt",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 38,
+    "customer": "ACTREC, Kharghar, Tata Hospital",
+    "contact_person": null,
+    "location": "Navi Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Tissue Processor",
+        "model": "MYR STP 120",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 39,
+    "customer": "Apollo Hospital, Belapur",
+    "contact_person": null,
+    "location": "Navi Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Tissue Flotation Bath",
+        "model": "ISTOS TFB 1100",
+        "quantity": 1
+      },
+      {
+        "name": "Slide Dryer Table",
+        "model": "ISTOS SDT 1200",
+        "quantity": 1
+      },
+      {
+        "name": "Bone Cutter",
+        "model": "ISTOS BBS",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 40,
+    "customer": "MGM Medical College, Kamothe",
+    "contact_person": null,
+    "location": "Navi Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Grossing Station",
+        "model": "ISTOS Labgross",
+        "quantity": 1
+      },
+      {
+        "name": "Tissue Processor",
+        "model": "Lupetec PT09TS",
+        "quantity": 1
+      },
+      {
+        "name": "Embedding Station",
+        "model": "ISTOS ES 1050-1,2",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 41,
+    "customer": "Karkinos Healthcare Pvt Ltd, Turbhe",
+    "contact_person": null,
+    "location": "Navi Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Grossing Station",
+        "model": "ISTOS Labgross",
+        "quantity": 1
+      },
+      {
+        "name": "Auto Formalin Preparation & Dispensing",
+        "model": "Zenon Formadose",
+        "quantity": 1
+      },
+      {
+        "name": "Manual Cassette Printer",
+        "model": null,
+        "quantity": 1
+      },
+      {
+        "name": "Reagent Recycler",
+        "model": "Vogel VCP",
+        "quantity": 1
+      },
+      {
+        "name": "Bone Cutter",
+        "model": "BR Instrument",
+        "quantity": 1
+      },
+      {
+        "name": "Formaldehyde Meter",
+        "model": "ISTOS BBS",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 42,
+    "customer": "General Diagnostics International Pvt Ltd, Sanpada",
+    "contact_person": null,
+    "location": "Navi Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Tissue Processor",
+        "model": "Lupetec PT05TS",
+        "quantity": 1
+      },
+      {
+        "name": "Embedding Station",
+        "model": "ISTOS ES 1050-1,2",
+        "quantity": 1
+      },
+      {
+        "name": "Manual Microtome",
+        "model": "PFM 3000 Compac",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 43,
+    "customer": "DNA Lab, Nerul",
+    "contact_person": null,
+    "location": "Navi Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Grossing Station",
+        "model": "ISTOS Labgross",
+        "quantity": 1
+      },
+      {
+        "name": "Tissue Flotation Bath",
+        "model": "ISTOS TFB 1300",
+        "quantity": 1
+      },
+      {
+        "name": "Bone Cutter",
+        "model": "ISTOS BBS",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "sr_no": 44,
+    "customer": "Torrent Diagnostics, Sanpada",
+    "contact_person": null,
+    "location": "Navi Mumbai",
+    "setup_type": null,
+    "equipment": [
+      {
+        "name": "Bone Cutter",
+        "model": "ISTOS BBS",
+        "quantity": 1
+      },
+      {
+        "name": "Cooling Plate",
+        "model": "ISTOS ES 1050-1",
+        "quantity": 1
+      },
+      {
+        "name": "Slide Dryer, Hot Plate",
+        "model": "ISTOS SDT 1200",
+        "quantity": 4
+      }
+    ]
+  },
+  {
