@@ -1,13 +1,12 @@
 "use strict";
 
-const DATA_URL = "customers.json";
+const DATA_URL = "./customers.json";
 const PAGE_SIZE = 12;
 
 const state = {
   customers: [],
   filteredCustomers: [],
-  currentPage: 1,
-  activeCustomer: null
+  currentPage: 1
 };
 
 const elements = {
@@ -24,87 +23,62 @@ const elements = {
   resultsSummary: document.getElementById("resultsSummary"),
   pagination: document.getElementById("pagination"),
   totalCustomersStat: document.getElementById("totalCustomersStat"),
-  currentYear: document.getElementById("currentYear"),
-  customerModal: document.getElementById("customerModal"),
-  modalCustomerName: document.getElementById("modalCustomerName"),
-  modalLocation: document.getElementById("modalLocation"),
-  modalSetupType: document.getElementById("modalSetupType"),
-  modalEquipmentList: document.getElementById("modalEquipmentList"),
-  closeModalButton: document.getElementById("closeModalButton"),
-  closeModalFooterButton: document.getElementById("closeModalFooterButton")
+  currentYear: document.getElementById("currentYear")
 };
 
-function normaliseText(value) {
-  return String(value ?? "")
-    .toLowerCase()
+function cleanText(value) {
+  return String(value || "")
     .trim()
     .replace(/\s+/g, " ");
 }
 
-function safeString(value, fallback = "Not specified") {
-  const cleanValue = String(value ?? "").trim();
-  return cleanValue || fallback;
-}
-
-function getCustomerEquipment(customer) {
-  return Array.isArray(customer.equipment) ? customer.equipment : [];
-}
-
-function getSearchableCustomerText(customer) {
-  const equipmentText = getCustomerEquipment(customer)
-    .map((item) => `${item.name ?? ""} ${item.model ?? ""}`)
-    .join(" ");
-
-  return normaliseText(
-    [
-      customer.customer,
-      customer.name,
-      customer.location,
-      customer.state,
-      customer.region,
-      customer.setup_type,
-      customer.contact_person,
-      equipmentText
-    ].join(" ")
-  );
+function normalizeText(value) {
+  return cleanText(value).toLowerCase();
 }
 
 function getCustomerName(customer) {
-  return safeString(customer.customer || customer.name, "Unnamed Customer");
+  return cleanText(customer.customer || customer.name || "Unnamed Customer");
 }
 
 function getCustomerLocation(customer) {
-  return safeString(customer.location, "Location not specified");
+  return cleanText(customer.location || "Location not specified");
 }
 
-function getCustomerSetupType(customer) {
-  return safeString(customer.setup_type, "Standard Equipment Supply");
+function getCustomerSetup(customer) {
+  return cleanText(customer.setup_type || "Equipment Supply");
+}
+
+function getEquipmentList(customer) {
+  return Array.isArray(customer.equipment) ? customer.equipment : [];
 }
 
 function getEquipmentNames(customer) {
-  return getCustomerEquipment(customer)
-    .map((item) => safeString(item.name, "Equipment"))
+  return getEquipmentList(customer)
+    .map(function (item) {
+      return cleanText(item.name || "");
+    })
     .filter(Boolean);
 }
 
-function getEquipmentPreview(customer) {
-  const equipmentNames = getEquipmentNames(customer);
+function getSearchText(customer) {
+  const equipmentText = getEquipmentList(customer)
+    .map(function (item) {
+      return [
+        item.name || "",
+        item.model || "",
+        item.quantity || ""
+      ].join(" ");
+    })
+    .join(" ");
 
-  if (equipmentNames.length === 0) {
-    return "Equipment information is not available.";
-  }
-
-  const maxItems = 3;
-  const visibleItems = equipmentNames.slice(0, maxItems);
-  const remainingCount = equipmentNames.length - visibleItems.length;
-
-  let preview = visibleItems.join(", ");
-
-  if (remainingCount > 0) {
-    preview += ` and ${remainingCount} more`;
-  }
-
-  return preview;
+  return normalizeText([
+    customer.sr_no || "",
+    getCustomerName(customer),
+    customer.contact_person || "",
+    getCustomerLocation(customer),
+    customer.setup_type || "",
+    equipmentText
+  ].join(" "));
 }
 
 function createOption(value, label) {
@@ -114,26 +88,54 @@ function createOption(value, label) {
   return option;
 }
 
-function populateFilters(customers) {
-  const locations = [
-    ...new Set(
-      customers
-        .map((customer) => getCustomerLocation(customer))
-        .filter((location) => location !== "Location not specified")
-    )
-  ].sort((a, b) => a.localeCompare(b, "en"));
+function populateFilters() {
+  const locations = [];
+  const equipmentNames = [];
 
-  const equipmentNames = [
-    ...new Set(
-      customers.flatMap((customer) => getEquipmentNames(customer))
-    )
-  ].sort((a, b) => a.localeCompare(b, "en"));
+  state.customers.forEach(function (customer) {
+    const location = getCustomerLocation(customer);
 
-  locations.forEach((location) => {
-    elements.locationFilter.appendChild(createOption(location, location));
+    if (
+      location &&
+      location !== "Location not specified" &&
+      locations.indexOf(location) === -1
+    ) {
+      locations.push(location);
+    }
+
+    getEquipmentNames(customer).forEach(function (equipmentName) {
+      if (equipmentNames.indexOf(equipmentName) === -1) {
+        equipmentNames.push(equipmentName);
+      }
+    });
   });
 
-  equipmentNames.forEach((equipmentName) => {
+  locations.sort(function (a, b) {
+    return a.localeCompare(b);
+  });
+
+  equipmentNames.sort(function (a, b) {
+    return a.localeCompare(b);
+  });
+
+  elements.locationFilter.innerHTML = "";
+  elements.equipmentFilter.innerHTML = "";
+
+  elements.locationFilter.appendChild(
+    createOption("", "All locations")
+  );
+
+  elements.equipmentFilter.appendChild(
+    createOption("", "All equipment")
+  );
+
+  locations.forEach(function (location) {
+    elements.locationFilter.appendChild(
+      createOption(location, location)
+    );
+  });
+
+  equipmentNames.forEach(function (equipmentName) {
     elements.equipmentFilter.appendChild(
       createOption(equipmentName, equipmentName)
     );
@@ -141,23 +143,23 @@ function populateFilters(customers) {
 }
 
 function filterCustomers() {
-  const searchTerm = normaliseText(elements.searchInput.value);
-  const selectedLocation = normaliseText(elements.locationFilter.value);
-  const selectedEquipment = normaliseText(elements.equipmentFilter.value);
+  const searchTerm = normalizeText(elements.searchInput.value);
+  const selectedLocation = normalizeText(elements.locationFilter.value);
+  const selectedEquipment = normalizeText(elements.equipmentFilter.value);
 
-  state.filteredCustomers = state.customers.filter((customer) => {
+  state.filteredCustomers = state.customers.filter(function (customer) {
     const matchesSearch =
-      !searchTerm || getSearchableCustomerText(customer).includes(searchTerm);
+      !searchTerm || getSearchText(customer).includes(searchTerm);
 
     const matchesLocation =
       !selectedLocation ||
-      normaliseText(getCustomerLocation(customer)) === selectedLocation;
+      normalizeText(getCustomerLocation(customer)) === selectedLocation;
 
     const matchesEquipment =
       !selectedEquipment ||
-      getCustomerEquipment(customer).some(
-        (item) => normaliseText(item.name) === selectedEquipment
-      );
+      getEquipmentList(customer).some(function (item) {
+        return normalizeText(item.name) === selectedEquipment;
+      });
 
     return matchesSearch && matchesLocation && matchesEquipment;
   });
@@ -166,142 +168,209 @@ function filterCustomers() {
 }
 
 function sortCustomers() {
-  const sortValue = elements.sortSelect.value;
+  const sortBy = elements.sortSelect.value;
 
-  state.filteredCustomers.sort((customerA, customerB) => {
-    const nameA = getCustomerName(customerA);
-    const nameB = getCustomerName(customerB);
-    const locationA = getCustomerLocation(customerA);
-    const locationB = getCustomerLocation(customerB);
+  state.filteredCustomers.sort(function (a, b) {
+    const nameA = getCustomerName(a);
+    const nameB = getCustomerName(b);
+    const locationA = getCustomerLocation(a);
+    const locationB = getCustomerLocation(b);
+    const serialA = Number(a.sr_no || 999999);
+    const serialB = Number(b.sr_no || 999999);
 
-    switch (sortValue) {
-      case "name-desc":
-        return nameB.localeCompare(nameA, "en");
-
-      case "location-asc":
-        return (
-          locationA.localeCompare(locationB, "en") ||
-          nameA.localeCompare(nameB, "en")
-        );
-
-      case "sr-asc":
-        return Number(customerA.sr_no || 9999) - Number(customerB.sr_no || 9999);
-
-      case "name-asc":
-      default:
-        return nameA.localeCompare(nameB, "en");
+    if (sortBy === "name-desc") {
+      return nameB.localeCompare(nameA);
     }
+
+    if (sortBy === "location-asc") {
+      return (
+        locationA.localeCompare(locationB) ||
+        nameA.localeCompare(nameB)
+      );
+    }
+
+    if (sortBy === "sr-asc") {
+      return serialA - serialB;
+    }
+
+    return nameA.localeCompare(nameB);
   });
 }
 
-function getPageCount() {
-  return Math.max(1, Math.ceil(state.filteredCustomers.length / PAGE_SIZE));
+function getTotalPages() {
+  return Math.max(
+    1,
+    Math.ceil(state.filteredCustomers.length / PAGE_SIZE)
+  );
 }
 
-function getPaginatedCustomers() {
-  const startIndex = (state.currentPage - 1) * PAGE_SIZE;
-  return state.filteredCustomers.slice(startIndex, startIndex + PAGE_SIZE);
+function getCurrentPageCustomers() {
+  const start = (state.currentPage - 1) * PAGE_SIZE;
+  const end = start + PAGE_SIZE;
+
+  return state.filteredCustomers.slice(start, end);
+}
+
+function getEquipmentPreview(customer) {
+  const names = getEquipmentNames(customer);
+
+  if (names.length === 0) {
+    return "Equipment information is not available.";
+  }
+
+  const visibleNames = names.slice(0, 3);
+  const remaining = names.length - visibleNames.length;
+
+  if (remaining > 0) {
+    return visibleNames.join(", ") + " and " + remaining + " more";
+  }
+
+  return visibleNames.join(", ");
 }
 
 function createCustomerCard(customer) {
-  const equipment = getCustomerEquipment(customer);
-  const card = document.createElement("article");
-  const top = document.createElement("div");
-  const body = document.createElement("div");
-  const footer = document.createElement("div");
-  const serialNumber = document.createElement("span");
-  const setupType = document.createElement("span");
+  const article = document.createElement("article");
+  const cardTop = document.createElement("div");
+  const cardBody = document.createElement("div");
+  const cardFooter = document.createElement("div");
+
+  const serial = document.createElement("span");
+  const setup = document.createElement("span");
   const title = document.createElement("h3");
   const location = document.createElement("p");
   const locationDot = document.createElement("span");
-  const equipmentPreview = document.createElement("p");
-  const equipmentCount = document.createElement("span");
+  const equipmentText = document.createElement("p");
+  const equipmentLabel = document.createElement("strong");
+  const itemCount = document.createElement("span");
   const detailsButton = document.createElement("button");
 
-  card.className = "customer-card";
-  top.className = "customer-card-top";
-  body.className = "customer-card-body";
-  footer.className = "customer-card-footer";
-  serialNumber.className = "customer-serial";
-  setupType.className = "customer-setup";
+  const equipment = getEquipmentList(customer);
+
+  article.className = "customer-card";
+  cardTop.className = "customer-card-top";
+  cardBody.className = "customer-card-body";
+  cardFooter.className = "customer-card-footer";
+
+  serial.className = "customer-serial";
+  setup.className = "customer-setup";
   location.className = "customer-location";
   locationDot.className = "location-dot";
-  equipmentPreview.className = "customer-equipment-preview";
-  equipmentCount.className = "equipment-count";
+  equipmentText.className = "customer-equipment-preview";
+  itemCount.className = "equipment-count";
   detailsButton.className = "details-button";
 
-  serialNumber.textContent = `#${safeString(customer.sr_no, "—")}`;
-  setupType.textContent = getCustomerSetupType(customer);
+  serial.textContent = "#" + cleanText(customer.sr_no || "—");
+  setup.textContent = getCustomerSetup(customer);
   title.textContent = getCustomerName(customer);
 
   location.appendChild(locationDot);
-  location.appendChild(document.createTextNode(getCustomerLocation(customer)));
-
-  const label = document.createElement("strong");
-  label.textContent = "Installed solutions: ";
-  equipmentPreview.appendChild(label);
-  equipmentPreview.appendChild(document.createTextNode(getEquipmentPreview(customer)));
-
-  equipmentCount.textContent = `${equipment.length} ${
-    equipment.length === 1 ? "equipment item" : "equipment items"
-  }`;
-
-  detailsButton.type = "button";
-  detailsButton.textContent = "View Details";
-  detailsButton.setAttribute(
-    "aria-label",
-    `View installed equipment at ${getCustomerName(customer)}`
+  location.appendChild(
+    document.createTextNode(getCustomerLocation(customer))
   );
 
-  detailsButton.addEventListener("click", () => {
-    openCustomerModal(customer);
+  equipmentLabel.textContent = "Installed solutions: ";
+  equipmentText.appendChild(equipmentLabel);
+  equipmentText.appendChild(
+    document.createTextNode(getEquipmentPreview(customer))
+  );
+
+  itemCount.textContent =
+    equipment.length +
+    " " +
+    (equipment.length === 1 ? "equipment item" : "equipment items");
+
+  detailsButton.type = "button";
+  detailsButton.textContent = "View Equipment";
+
+  detailsButton.addEventListener("click", function () {
+    showCustomerEquipment(customer);
   });
 
-  top.append(serialNumber, setupType);
-  body.append(title, location, equipmentPreview);
-  footer.append(equipmentCount, detailsButton);
-  card.append(top, body, footer);
+  cardTop.appendChild(serial);
+  cardTop.appendChild(setup);
 
-  return card;
+  cardBody.appendChild(title);
+  cardBody.appendChild(location);
+  cardBody.appendChild(equipmentText);
+
+  cardFooter.appendChild(itemCount);
+  cardFooter.appendChild(detailsButton);
+
+  article.appendChild(cardTop);
+  article.appendChild(cardBody);
+  article.appendChild(cardFooter);
+
+  return article;
 }
 
 function renderCustomerCards() {
-  const paginatedCustomers = getPaginatedCustomers();
+  const customers = getCurrentPageCustomers();
 
-  elements.customerResults.replaceChildren();
+  elements.customerResults.innerHTML = "";
 
-  paginatedCustomers.forEach((customer) => {
-    elements.customerResults.appendChild(createCustomerCard(customer));
+  customers.forEach(function (customer) {
+    elements.customerResults.appendChild(
+      createCustomerCard(customer)
+    );
   });
 
   elements.customerResults.setAttribute("aria-busy", "false");
 }
 
-function createPaginationButton(label, pageNumber, options = {}) {
+function showCustomerEquipment(customer) {
+  const equipment = getEquipmentList(customer);
+
+  let message = getCustomerName(customer) + "\n";
+  message += "Location: " + getCustomerLocation(customer) + "\n\n";
+  message += "Installed Equipment:\n\n";
+
+  if (equipment.length === 0) {
+    message += "Equipment details are not available.";
+  } else {
+    equipment.forEach(function (item, index) {
+      const itemName = cleanText(item.name || "Equipment");
+      const model = cleanText(item.model || "Model not specified");
+      const quantity = cleanText(item.quantity || "1");
+
+      message +=
+        (index + 1) +
+        ". " +
+        itemName +
+        "\n   Model: " +
+        model +
+        "\n   Quantity: " +
+        quantity +
+        "\n\n";
+    });
+  }
+
+  window.alert(message);
+}
+
+function createPageButton(label, page, options) {
   const button = document.createElement("button");
 
   button.type = "button";
   button.className = "page-button";
   button.textContent = label;
-  button.disabled = Boolean(options.disabled);
 
-  if (options.active) {
+  if (options && options.active) {
     button.classList.add("is-active");
     button.setAttribute("aria-current", "page");
   }
 
-  button.setAttribute(
-    "aria-label",
-    options.ariaLabel || `Go to page ${pageNumber}`
-  );
+  if (options && options.disabled) {
+    button.disabled = true;
+  }
 
-  button.addEventListener("click", () => {
-    if (button.disabled || pageNumber === state.currentPage) {
+  button.addEventListener("click", function () {
+    if (button.disabled || page === state.currentPage) {
       return;
     }
 
-    state.currentPage = pageNumber;
-    render();
+    state.currentPage = page;
+    renderPage();
+
     document.getElementById("customer-results").scrollIntoView({
       behavior: "smooth",
       block: "start"
@@ -312,10 +381,9 @@ function createPaginationButton(label, pageNumber, options = {}) {
 }
 
 function renderPagination() {
-  const totalPages = getPageCount();
-  const fragment = document.createDocumentFragment();
+  const totalPages = getTotalPages();
 
-  elements.pagination.replaceChildren();
+  elements.pagination.innerHTML = "";
 
   if (state.filteredCustomers.length <= PAGE_SIZE) {
     elements.pagination.hidden = true;
@@ -324,97 +392,84 @@ function renderPagination() {
 
   elements.pagination.hidden = false;
 
-  fragment.appendChild(
-    createPaginationButton("←", state.currentPage - 1, {
-      disabled: state.currentPage === 1,
-      ariaLabel: "Go to previous page"
+  elements.pagination.appendChild(
+    createPageButton("←", state.currentPage - 1, {
+      disabled: state.currentPage === 1
     })
   );
 
-  const maxVisiblePages = 5;
   let startPage = Math.max(1, state.currentPage - 2);
-  let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+  let endPage = Math.min(totalPages, startPage + 4);
 
-  if (endPage - startPage < maxVisiblePages - 1) {
-    startPage = Math.max(1, endPage - maxVisiblePages + 1);
+  if (endPage - startPage < 4) {
+    startPage = Math.max(1, endPage - 4);
   }
 
   for (let page = startPage; page <= endPage; page += 1) {
-    fragment.appendChild(
-      createPaginationButton(String(page), page, {
+    elements.pagination.appendChild(
+      createPageButton(String(page), page, {
         active: page === state.currentPage
       })
     );
   }
 
-  fragment.appendChild(
-    createPaginationButton("→", state.currentPage + 1, {
-      disabled: state.currentPage === totalPages,
-      ariaLabel: "Go to next page"
+  elements.pagination.appendChild(
+    createPageButton("→", state.currentPage + 1, {
+      disabled: state.currentPage === totalPages
     })
   );
-
-  elements.pagination.appendChild(fragment);
 }
 
 function updateResultsSummary() {
   const total = state.filteredCustomers.length;
-  const overallTotal = state.customers.length;
 
   if (total === 0) {
-    elements.resultsSummary.textContent = "No customer records match your criteria.";
+    elements.resultsSummary.textContent =
+      "No customer records match your search or selected filters.";
     return;
   }
 
   const start = (state.currentPage - 1) * PAGE_SIZE + 1;
   const end = Math.min(state.currentPage * PAGE_SIZE, total);
 
-  elements.resultsSummary.replaceChildren(
-    document.createTextNode(`Showing ${start}–${end} of `),
-    createStrongText(`${total}`),
-    document.createTextNode(
-      total === overallTotal ? " customer records." : " matching customer records."
-    )
-  );
+  elements.resultsSummary.textContent =
+    "Showing " +
+    start +
+    "–" +
+    end +
+    " of " +
+    total +
+    " customer records.";
 }
 
-function createStrongText(text) {
-  const strong = document.createElement("strong");
-  strong.textContent = text;
-  return strong;
-}
-
-function toggleDisplayStates() {
-  const hasCustomers = state.filteredCustomers.length > 0;
-
-  elements.emptyState.hidden = hasCustomers;
-  elements.customerResults.hidden = !hasCustomers;
-  elements.pagination.hidden = !hasCustomers || state.filteredCustomers.length <= PAGE_SIZE;
-}
-
-function render() {
-  const totalPages = getPageCount();
+function renderPage() {
+  const totalPages = getTotalPages();
 
   if (state.currentPage > totalPages) {
     state.currentPage = totalPages;
   }
 
-  updateResultsSummary();
-  toggleDisplayStates();
+  const hasResults = state.filteredCustomers.length > 0;
 
-  if (state.filteredCustomers.length > 0) {
+  elements.emptyState.hidden = hasResults;
+  elements.customerResults.hidden = !hasResults;
+
+  updateResultsSummary();
+
+  if (hasResults) {
     renderCustomerCards();
     renderPagination();
   } else {
-    elements.customerResults.replaceChildren();
-    elements.pagination.replaceChildren();
+    elements.customerResults.innerHTML = "";
+    elements.pagination.innerHTML = "";
+    elements.pagination.hidden = true;
   }
 }
 
 function applyFilters() {
   state.currentPage = 1;
   filterCustomers();
-  render();
+  renderPage();
 }
 
 function clearFilters() {
@@ -427,66 +482,94 @@ function clearFilters() {
   elements.searchInput.focus();
 }
 
-function addEquipmentItemToModal(item) {
-  const row = document.createElement("div");
-  const name = document.createElement("span");
-  const model = document.createElement("span");
-  const quantity = document.createElement("span");
+async function loadCustomers() {
+  try {
+    elements.loadingState.hidden = false;
+    elements.errorState.hidden = true;
+    elements.emptyState.hidden = true;
+    elements.customerResults.setAttribute("aria-busy", "true");
 
-  row.className = "modal-equipment-item";
-  name.className = "modal-equipment-name";
-  model.className = "modal-equipment-model";
-  quantity.className = "modal-equipment-qty";
-
-  name.textContent = safeString(item.name, "Equipment");
-  model.textContent = safeString(item.model, "Model not specified");
-
-  const itemQuantity = item.quantity ?? item.quantity_text ?? 1;
-  quantity.textContent = `Qty: ${itemQuantity}`;
-
-  row.append(name, model, quantity);
-
-  return row;
-}
-
-function openCustomerModal(customer) {
-  state.activeCustomer = customer;
-
-  elements.modalCustomerName.textContent = getCustomerName(customer);
-  elements.modalLocation.textContent = getCustomerLocation(customer);
-  elements.modalSetupType.textContent = getCustomerSetupType(customer);
-
-  elements.modalEquipmentList.replaceChildren();
-
-  const equipment = getCustomerEquipment(customer);
-
-  if (equipment.length === 0) {
-    const noEquipment = document.createElement("p");
-    noEquipment.textContent = "Equipment details are not currently available.";
-    elements.modalEquipmentList.appendChild(noEquipment);
-  } else {
-    equipment.forEach((item) => {
-      elements.modalEquipmentList.appendChild(addEquipmentItemToModal(item));
+    const response = await fetch(DATA_URL, {
+      cache: "no-store"
     });
-  }
 
-  if (typeof elements.customerModal.showModal === "function") {
-    elements.customerModal.showModal();
-  } else {
-    elements.customerModal.setAttribute("open", "");
+    if (!response.ok) {
+      throw new Error(
+        "Unable to load customers.json. HTTP status: " +
+        response.status
+      );
+    }
+
+    const responseText = await response.text();
+    const data = JSON.parse(responseText);
+
+    if (!Array.isArray(data)) {
+      throw new Error(
+        "customers.json is invalid. The file must contain a JSON array."
+      );
+    }
+
+    state.customers = data.filter(function (customer) {
+      return customer && typeof customer === "object";
+    });
+
+    state.filteredCustomers = state.customers.slice();
+
+    if (elements.totalCustomersStat) {
+      elements.totalCustomersStat.textContent =
+        state.customers.length + "+";
+    }
+
+    populateFilters();
+    filterCustomers();
+    renderPage();
+  } catch (error) {
+    console.error("Customer data error:", error);
+
+    elements.customerResults.innerHTML = "";
+    elements.customerResults.setAttribute("aria-busy", "false");
+    elements.resultsSummary.textContent =
+      "Customer records could not be loaded.";
+
+    const errorParagraph = elements.errorState.querySelector("p");
+
+    if (errorParagraph) {
+      errorParagraph.textContent = error.message;
+    }
+
+    elements.errorState.hidden = false;
+  } finally {
+    elements.loadingState.hidden = true;
   }
 }
 
-function closeCustomerModal() {
-  if (elements.customerModal.open) {
-    elements.customerModal.close();
-  } else {
-    elements.customerModal.removeAttribute("open");
-  }
+function initialiseEvents() {
+  let searchTimeout;
 
-  state.activeCustomer = null;
+  elements.searchInput.addEventListener("input", function () {
+    window.clearTimeout(searchTimeout);
+
+    searchTimeout = window.setTimeout(function () {
+      applyFilters();
+    }, 250);
+  });
+
+  elements.locationFilter.addEventListener("change", applyFilters);
+  elements.equipmentFilter.addEventListener("change", applyFilters);
+  elements.sortSelect.addEventListener("change", applyFilters);
+
+  elements.clearFiltersButton.addEventListener("click", clearFilters);
+
+  if (elements.emptyClearButton) {
+    elements.emptyClearButton.addEventListener("click", clearFilters);
+  }
 }
 
-function handleModalBackdropClick(event) {
-  const dialog = elements.customerModal;
-  const dialogDimensions = dialog
+document.addEventListener("DOMContentLoaded", function () {
+  if (elements.currentYear) {
+    elements.currentYear.textContent = new Date().getFullYear();
+  }
+
+  initialiseEvents();
+  loadCustomers();
+});
