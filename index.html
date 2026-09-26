@@ -1,46 +1,370 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ISTOS Medical – Customer Showcase</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+  <meta
+    name="description"
+    content="Explore hospitals, medical colleges, diagnostic laboratories and research centres served by ISTOS Medical Pvt Ltd across India."
+  />
+  <meta name="theme-color" content="#0b3157" />
+
+  <title>Our Customers | ISTOS Medical Pvt Ltd</title>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <header>
-    <h1>🌍 ISTOS Medical Pvt Ltd</h1>
-    <p>Trusted by leading hospitals & labs across India 🇮🇳</p>
+  <a class="skip-link" href="#customer-results">
+    Skip to customer results
+  </a>
+
+  <header class="site-header">
+    <div class="container header-content">
+      <a class="brand" href="/" aria-label="ISTOS Medical home">
+        <span class="brand-mark" aria-hidden="true">IM</span>
+
+        <span class="brand-text">
+          <strong>ISTOS Medical</strong>
+          <small>Histopathology Solutions</small>
+        </span>
+      </a>
+
+      <nav class="header-nav" aria-label="Primary navigation">
+        <a href="#customers">Customers</a>
+        <a href="#equipment-gallery">Equipment Gallery</a>
+        <a class="header-cta" href="/contact-us">Contact Us</a>
+      </nav>
+    </div>
   </header>
 
-  <section class="hero">
-    <h2>🧪 Our Customers, Our Pride</h2>
-    <p>Explore the institutions that rely on ISTOS Medical for advanced histopathology solutions.</p>
-  </section>
+  <main>
+    <section class="hero-section" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <p class="eyebrow">Customer Network</p>
 
-  <!-- 🔍 Search Bar -->
-  <section id="search">
-    <input type="text" id="searchInput" placeholder="🔍 Search by name, city, or equipment...">
-  </section>
+          <h1 id="hero-title">
+            Trusted by Leading Healthcare Institutions Across India
+          </h1>
 
-  <section id="customers">
-    <h2>🏥 Featured Customers</h2>
-    <div id="customer-list"></div>
-  </section>
+          <p class="hero-description">
+            ISTOS Medical supports hospitals, diagnostic laboratories, medical colleges,
+            research organisations and cancer-care centres with dependable
+            histopathology equipment and workflow solutions.
+          </p>
 
-  <section id="gallery">
-    <h2>🖼️ Equipment Gallery</h2>
-    <div class="gallery-grid">
-      <img src="assets/placeholder.png" alt="Grossing Station">
-      <img src="assets/placeholder.png" alt="Cryostat">
-      <img src="assets/placeholder.png" alt="Bone Cutter">
-      <img src="assets/placeholder.png" alt="Cassette Printer">
+          <div class="hero-actions">
+            <a class="button button-primary" href="#customers">
+              Explore Customers
+            </a>
+
+            <a class="button button-secondary" href="/contact-us">
+              Discuss Your Requirement
+            </a>
+          </div>
+        </div>
+
+        <aside class="hero-stat-card" aria-label="Customer showcase summary">
+          <p class="stat-label">Serving healthcare across India</p>
+
+          <p class="stat-number" id="totalCustomersStat">170+</p>
+
+          <p class="stat-text">
+            Hospitals, laboratories, medical colleges and research institutions.
+          </p>
+
+          <div class="stat-divider"></div>
+
+          <p class="stat-mini-label">Specialisation</p>
+
+          <p class="stat-mini-text">
+            Histopathology, grossing, tissue processing, microtomy,
+            staining and cryostat solutions.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="customers" class="customers-section" aria-labelledby="customers-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Customer Showcase</p>
+            <h2 id="customers-title">Institutions That Trust ISTOS Medical</h2>
+            <p>
+              Search by institution, location, equipment category or equipment model.
+            </p>
+          </div>
+        </div>
+
+        <div class="filter-panel">
+          <div class="search-field">
+            <label for="searchInput">Search customers</label>
+
+            <div class="search-input-wrap">
+              <svg
+                class="search-icon"
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="m20 20-3.5-3.5"></path>
+              </svg>
+
+              <input
+                type="search"
+                id="searchInput"
+                name="search"
+                placeholder="Search hospital, city, equipment or model"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+
+          <div class="select-field">
+            <label for="locationFilter">Location</label>
+
+            <select id="locationFilter" name="location">
+              <option value="">All locations</option>
+            </select>
+          </div>
+
+          <div class="select-field">
+            <label for="equipmentFilter">Equipment</label>
+
+            <select id="equipmentFilter" name="equipment">
+              <option value="">All equipment</option>
+            </select>
+          </div>
+
+          <div class="filter-action">
+            <button type="button" id="clearFiltersButton" class="button button-outline">
+              Clear Filters
+            </button>
+          </div>
+        </div>
+
+        <div class="results-toolbar">
+          <p id="resultsSummary" class="results-summary" aria-live="polite">
+            Loading customer records...
+          </p>
+
+          <label class="sort-control" for="sortSelect">
+            <span>Sort by</span>
+
+            <select id="sortSelect" name="sort">
+              <option value="name-asc">Customer name: A–Z</option>
+              <option value="name-desc">Customer name: Z–A</option>
+              <option value="location-asc">Location: A–Z</option>
+              <option value="sr-asc">Serial number</option>
+            </select>
+          </label>
+        </div>
+
+        <div
+          id="loadingState"
+          class="status-state"
+          role="status"
+          aria-live="polite"
+        >
+          <span class="loader" aria-hidden="true"></span>
+          <p>Loading customer showcase...</p>
+        </div>
+
+        <div
+          id="errorState"
+          class="status-state status-error"
+          role="alert"
+          hidden
+        >
+          <h3>Unable to load customer data</h3>
+          <p>
+            Please ensure that <code>customers.json</code> is present and valid JSON.
+          </p>
+        </div>
+
+        <div
+          id="emptyState"
+          class="status-state"
+          hidden
+        >
+          <h3>No customer records found</h3>
+          <p>Try changing your search keywords or clearing the active filters.</p>
+
+          <button type="button" id="emptyClearButton" class="button button-outline">
+            Clear Filters
+          </button>
+        </div>
+
+        <div
+          id="customer-results"
+          class="customer-grid"
+          aria-live="polite"
+          aria-busy="true"
+        ></div>
+
+        <nav
+          id="pagination"
+          class="pagination"
+          aria-label="Customer results pagination"
+          hidden
+        ></nav>
+      </div>
+    </section>
+
+    <section
+      id="equipment-gallery"
+      class="gallery-section"
+      aria-labelledby="gallery-title"
+    >
+      <div class="container">
+        <div class="section-heading section-heading-light">
+          <div>
+            <p class="eyebrow">Product Ecosystem</p>
+            <h2 id="gallery-title">Built for Modern Histopathology Workflows</h2>
+            <p>
+              From grossing and tissue processing to sectioning, staining and imaging,
+              ISTOS Medical helps laboratories build efficient workflows.
+            </p>
+          </div>
+        </div>
+
+        <div class="gallery-grid">
+          <article class="gallery-card">
+            <img
+              src="assets/grossing-station.jpg"
+              alt="ISTOS grossing station installed in a pathology laboratory"
+              loading="lazy"
+            />
+            <div class="gallery-overlay">
+              <h3>Grossing Stations</h3>
+              <p>Ergonomic specimen handling and documentation workflows.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card">
+            <img
+              src="assets/cryostat.jpg"
+              alt="ISTOS cryostat for frozen section procedures"
+              loading="lazy"
+            />
+            <div class="gallery-overlay">
+              <h3>Cryostats</h3>
+              <p>Reliable frozen-section capability for fast clinical decisions.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card">
+            <img
+              src="assets/bone-cutter.jpg"
+              alt="ISTOS bone cutter for pathology sample preparation"
+              loading="lazy"
+            />
+            <div class="gallery-overlay">
+              <h3>Bone Cutting Systems</h3>
+              <p>Designed for efficient hard-tissue specimen preparation.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card">
+            <img
+              src="assets/cassette-printer.jpg"
+              alt="Cassette printer used for pathology specimen identification"
+              loading="lazy"
+            />
+            <div class="gallery-overlay">
+              <h3>Identification Systems</h3>
+              <p>Cassette and slide printing for traceable laboratory workflows.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" aria-labelledby="cta-title">
+      <div class="container cta-content">
+        <div>
+          <p class="eyebrow">Need a tailored solution?</p>
+          <h2 id="cta-title">Build Your Histopathology Lab with ISTOS Medical</h2>
+          <p>
+            Speak with our team for equipment selection, complete lab planning,
+            installation, user training and service support.
+          </p>
+        </div>
+
+        <a class="button button-white" href="/contact-us">
+          Request a Consultation
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div>
+        <strong>ISTOS Medical Pvt Ltd</strong>
+        <p>Advanced histopathology and laboratory workflow solutions.</p>
+      </div>
+
+      <p>
+        © <span id="currentYear"></span> ISTOS Medical Pvt Ltd.
+        All rights reserved.
+      </p>
     </div>
-  </section>
-
-  <footer>
-    <p>© 2026 ISTOS Medical Pvt Ltd | Innovating Histopathology Solutions 🔬</p>
   </footer>
 
-  <script src="script.js"></script>
+  <dialog id="customerModal" class="customer-modal" aria-labelledby="modalCustomerName">
+    <div class="modal-header">
+      <div>
+        <p class="modal-eyebrow">Customer Equipment Profile</p>
+        <h2 id="modalCustomerName">Customer Name</h2>
+      </div>
+
+      <button
+        type="button"
+        id="closeModalButton"
+        class="modal-close"
+        aria-label="Close customer details"
+      >
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+
+    <div class="modal-meta">
+      <p>
+        <span class="meta-label">Location</span>
+        <span id="modalLocation">—</span>
+      </p>
+
+      <p>
+        <span class="meta-label">Setup Type</span>
+        <span id="modalSetupType">—</span>
+      </p>
+    </div>
+
+    <div class="modal-body">
+      <h3>Installed Equipment</h3>
+      <div id="modalEquipmentList" class="modal-equipment-list"></div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" id="closeModalFooterButton" class="button button-outline">
+        Close
+      </button>
+
+      <a class="button button-primary" href="/contact-us">
+        Enquire for Similar Setup
+      </a>
+    </div>
+  </dialog>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
