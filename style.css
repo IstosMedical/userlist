@@ -18,6 +18,19 @@ header {
   background: #e6f2ff;
 }
 
+#search {
+  text-align: center;
+  margin: 1rem;
+}
+
+#searchInput {
+  width: 60%;
+  padding: 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
 #customers {
   padding: 2rem;
 }
